@@ -2,20 +2,6 @@
 # @author deng
 # since 2024 2025 2026
 
-# Cute startup greeting.
-# Rosé Pine hexes are baked in: the greeting is printed before fish resolves
-# fish_terminal_color_theme, so it cannot follow the light/dark theme variant.
-# rose/iris/love were picked to stay legible on both Dawn and the night base.
-function _fish_greeting
-    set -l rose (set_color --bold d7827e)
-    set -l iris (set_color 907aa9)
-    set -l love (set_color b4637a)
-    set -l off (set_color normal)
-    printf '%sNyaa~ %sterminal ready! %s(^._.^)~ %s<3%s\n' \
-        $rose $iris $rose $love $off
-end
-set -g fish_greeting (_fish_greeting)
-
 # Default editor.
 set -gx EDITOR nvim
 set -gx VISUAL $EDITOR
@@ -31,23 +17,39 @@ fish_add_path --global /opt/homebrew/bin /opt/homebrew/sbin
 # User and package paths.
 fish_add_path --global \
     $HOME/.local/bin \
-    $HOME/.opencode/bin \
     /opt/homebrew/opt/openjdk@21/bin
 if test -d "$HOME/.lmstudio/bin"
     fish_add_path --global --append "$HOME/.lmstudio/bin"
 end
+
+# Bun is available in both interactive and non-interactive shells.
+set -gx BUN_INSTALL "$HOME/.bun"
+# Remove inherited copies before prepending, including those from older shells.
+set -gx PATH "$BUN_INSTALL/bin" (string match --invert -- "$BUN_INSTALL/bin" $PATH)
 
 # fzf defaults.
 if command -q rg
     set -gx FZF_DEFAULT_COMMAND "rg --files --hidden --glob '!.git'"
 end
 set -gx FZF_DEFAULT_OPTS "--height=40% --layout=reverse --border --cycle --preview-window=wrap"
+set -ax FZF_DEFAULT_OPTS '--color=bg:-1,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4,hl:#f38ba8,hl+:#f38ba8,info:#cba6f7,prompt:#cba6f7,pointer:#f5e0dc,marker:#b4befe,spinner:#f5e0dc,header:#f38ba8,border:#6c7086'
+set -g fzf_fd_opts --hidden --exclude .git
 
 # Keep non-interactive shells lightweight.
 status is-interactive; or return
 
-# Theme (Rosé Pine Dawn on light terminals, Rosé Pine on dark).
-fish_config theme choose rosepine
+# Cute startup greeting, called by fish only in interactive shells.
+# Catppuccin Mocha pink and blue.
+function fish_greeting
+    set -l pink (set_color --bold f5c2e7)
+    set -l blue (set_color 89b4fa)
+    set -l off (set_color normal)
+    printf '%sNyaa~ %sterminal ready! %s(^._.^)~ %s<3%s\n' \
+        $pink $blue $pink $blue $off
+end
+
+# Fippuccin maps Fish syntax colors to Catppuccin Mocha.
+fish_config theme choose fippuccin
 
 # Directory listing aliases.
 if command -q eza
@@ -55,10 +57,6 @@ if command -q eza
     alias ls="eza -F --sort=type --icons=always"
     alias ll="eza -aF --long --sort=type --icons=always"
     alias lt4="eza -lT -L4 --icons"
-end
-
-if command -q opencode
-  alias oc="opencode"
 end
 
 # Small command shortcuts.
@@ -70,9 +68,6 @@ alias vi="nvim"
 alias vim="nvim"
 alias gst="git status"
 alias cfg="cd ~/.config"
-if command -q claude
-    alias cc="claude --dangerously-skip-permissions"
-end
 alias 哈吉米="cat"
 
 # Default Fish key bindings.
@@ -95,8 +90,3 @@ end
 if command -q starship
     starship init fish | source
 end
-
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
-

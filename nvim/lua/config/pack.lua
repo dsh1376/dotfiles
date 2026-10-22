@@ -26,13 +26,12 @@ vim.api.nvim_create_autocmd('PackChanged', {
 vim.pack.add({
   'https://github.com/nvim-lua/plenary.nvim.git',
   'https://github.com/MunifTanjim/nui.nvim.git',
-  'https://github.com/nvim-mini/mini.icons.git',
   'https://github.com/nvim-mini/mini.nvim.git',
   'https://github.com/rafamadriz/friendly-snippets.git',
   { src = 'https://github.com/L3MON4D3/LuaSnip.git', version = vim.version.range '2' },
   { src = 'https://github.com/saghen/blink.cmp.git', version = vim.version.range '1' },
   { src = 'https://github.com/nvim-treesitter/nvim-treesitter.git', version = 'main' },
-  { src = 'https://github.com/rose-pine/neovim.git', name = 'rose-pine' },
+  { src = 'https://github.com/catppuccin/nvim.git', name = 'catppuccin' },
   'https://github.com/mason-org/mason.nvim.git',
   'https://github.com/folke/lazydev.nvim.git',
   'https://github.com/folke/snacks.nvim.git',
@@ -56,7 +55,7 @@ vim.pack.add({
 }, { confirm = false })
 
 -- Configure dependencies before their consumers and UI plugins before VimEnter.
-require 'plugins.rose-pine'
+require 'plugins.catppuccin'
 require 'plugins.mini'
 require 'plugins.mason'
 require 'plugins.lazydev'

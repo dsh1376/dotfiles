@@ -1,0 +1,39 @@
+# Claude Light, adapted from the claude-design-system skill.
+# CDS canvas, warm neutrals, clay cursor, and clay-tinted selection.
+# ANSI hues extend CDS for terminal semantics; light clay text is darkened.
+
+background = #fcfcfb
+foreground = #373634
+cursor-color = #d97757
+cursor-text = #0b0b0a
+
+# Clay at 30% over the canvas, with dark selected text.
+selection-background = #f2d4ca
+selection-foreground = #373634
+search-background = #fbf3ef
+search-foreground = #373634
+search-selected-background = #d97757
+search-selected-foreground = #0b0b0a
+
+split-divider-color = #dedcd6
+unfocused-split-fill = #f5f5f3
+
+# Normal: ink, red, green, ochre, slate, mauve, teal, warm gray.
+palette = 0=#20201e
+palette = 1=#9b3c32
+palette = 2=#4c653b
+palette = 3=#80621e
+palette = 4=#526878
+palette = 5=#795567
+palette = 6=#3e6d68
+palette = 7=#6b6863
+
+# Bright variants retain enough contrast for small text on the light canvas.
+palette = 8=#6b6863
+palette = 9=#ac4f36
+palette = 10=#567442
+palette = 11=#8a691f
+palette = 12=#5b7181
+palette = 13=#856071
+palette = 14=#477871
+palette = 15=#373634

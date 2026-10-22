@@ -3,11 +3,11 @@
 # since 2024 2025 2026
 
 [flavor]
-dark  = "rose-pine-dawn"
-light = "rose-pine-dawn"
+dark  = "catppuccin-mocha-blue"
+light = "catppuccin-mocha-blue"
 
 # Transparent background: don't paint cells, let the terminal background
-# (ghostty: background-opacity 0.95 + blur) show through instead.
+# show through instead.
 [app]
 overall = { bg = "reset" }
 

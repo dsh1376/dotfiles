@@ -1,0 +1,39 @@
+# Claude Dark, adapted from the claude-design-system skill.
+# CDS canvas, warm neutrals, clay cursor, and clay-tinted selection.
+# ANSI hues extend CDS for terminal semantics with muted companion colors.
+
+background = #151515
+foreground = #dedcd6
+cursor-color = #d97757
+cursor-text = #0b0b0a
+
+# Clay at 30% over the canvas, with warm selected text.
+selection-background = #503229
+selection-foreground = #dedcd6
+search-background = #503229
+search-foreground = #dedcd6
+search-selected-background = #d97757
+search-selected-foreground = #0b0b0a
+
+split-divider-color = #373634
+unfocused-split-fill = #0b0b0a
+
+# Normal: base surface, red, green, ochre, slate, mauve, teal, warm gray.
+palette = 0=#0b0b0a
+palette = 1=#d97767
+palette = 2=#9daa8a
+palette = 3=#c7b080
+palette = 4=#9aaebc
+palette = 5=#b6a0ac
+palette = 6=#8cbbb3
+palette = 7=#dedcd6
+
+# Bright black uses CDS gray 300 so dim labels remain readable.
+palette = 8=#a4a19b
+palette = 9=#d97757
+palette = 10=#b0bd9c
+palette = 11=#d6bf92
+palette = 12=#aec1ce
+palette = 13=#c7b2be
+palette = 14=#a2cec5
+palette = 15=#fcfcfb

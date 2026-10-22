@@ -15,6 +15,8 @@ yazi/flavors
 yazi/package.toml
 nvim/tmp
 nvim/lazy-lock.json
+nvim.log
+karabiner/automatic_backups
 
 /herdr/.plugins.lock
 /herdr/*.log

@@ -30,6 +30,7 @@ shopt -s checkwinsize
 # Fzf
 export FZF_DEFAULT_COMMAND="rg --files"
 export FZF_DEFAULT_OPTS='--height 40% --layout reverse'
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg:-1,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4,hl:#f38ba8,hl+:#f38ba8,info:#cba6f7,prompt:#cba6f7,pointer:#f5e0dc,marker:#b4befe,spinner:#f5e0dc,header:#f38ba8,border:#6c7086"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # export FZF_DEFAULT_OPTS='--height 40% --layout reverse --border'
 eval "$(fzf --bash)" # Fzf

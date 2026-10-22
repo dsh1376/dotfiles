@@ -1,12 +1,13 @@
 # Dotfiles
 
-Personal configuration files for a terminal-centric macOS development environment, unified around the **Rosé Pine** palette.
+Personal configuration files for a terminal-centric macOS development environment, unified around the **Catppuccin Mocha** palette.
 
 ## Structure
 
 ```text
 .config/
 ├── bash/           # Fallback shell
+├── bat/            # Syntax-highlighted file previews
 ├── btop/           # System monitor
 ├── fish/           # Primary shell
 ├── ghostty/        # Terminal emulator
@@ -28,9 +29,10 @@ Personal configuration files for a terminal-centric macOS development environmen
 | **Fish** | `fzf` and `zoxide` integration, `eza` aliases, and custom greeting |
 | **Zsh** | Zinit turbo mode with `fast-syntax-highlighting`, `zsh-autosuggestions`, and `fzf-tab` |
 | **Bash** | Vi-mode line editing, `fzf` integration, and shared aliases |
+| **bat** | Catppuccin Mocha syntax highlighting for file previews |
 | **Starship** | Single-line prompt displaying Git status metrics and runtime versions |
 | **Yazi** | Transparent background passthrough and inline image previews |
-| **btop** | Transparent TTY theme with Vim-style navigation keys |
+| **btop** | Catppuccin Mocha theme with a transparent background and Vim-style navigation keys |
 
 ## Fonts
 
