@@ -29,3 +29,4 @@ CLAUDE.md
 
 # zsh: local secrets
 zsh/local.zsh
+/fish/conf.d/context7.fish
