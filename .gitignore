@@ -26,3 +26,6 @@ karabiner/automatic_backups
 AGENTS.md
 CLAUDE.md
 /herdr
+
+# zsh: local secrets
+zsh/local.zsh

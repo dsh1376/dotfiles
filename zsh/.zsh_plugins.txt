@@ -1,0 +1,11 @@
+# .zsh_plugins.txt
+# antidote bundle list, loaded by .zshrc in this order.
+
+# Completions. ez-compinit queues compdef calls and runs compinit once fpath is final.
+mattmc3/ez-compinit
+zsh-users/zsh-completions kind:fpath path:src
+
+# fzf-tab loads before the plugins that wrap ZLE widgets.
+Aloxaf/fzf-tab
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting kind:defer

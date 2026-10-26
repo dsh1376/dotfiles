@@ -9,13 +9,13 @@ Personal configuration files for a terminal-centric macOS development environmen
 ├── bash/           # Fallback shell
 ├── bat/            # Syntax-highlighted file previews
 ├── btop/           # System monitor
-├── fish/           # Primary shell
+├── fish/           # Previous shell
 ├── ghostty/        # Terminal emulator
 ├── karabiner/      # Key remapper
 ├── nvim/           # Primary editor
 ├── tmux/           # Terminal multiplexer
 ├── yazi/           # File manager
-├── zsh/            # Secondary shell
+├── zsh/            # Primary shell
 └── starship.toml   # Cross-shell prompt
 ```
 
@@ -26,13 +26,13 @@ Personal configuration files for a terminal-centric macOS development environmen
 | **Neovim** | Native `vim.pack` and `vim.lsp.config` (0.12+), `blink.cmp`, `snacks.nvim`, `heirline`, `oil`, `flash`, `conform`, and `nvim-dap` |
 | **Ghostty** | `0.88` background opacity with blur, hidden titlebar, custom app icon, and GLSL cursor shaders |
 | **tmux** | Vi copy-mode, live CPU/RAM/GPU status line, Yazi image passthrough, and `sessionx` / `floax` popups |
-| **Fish** | `fzf` and `zoxide` integration, `eza` aliases, and custom greeting |
-| **Zsh** | Zinit turbo mode with `fast-syntax-highlighting`, `zsh-autosuggestions`, and `fzf-tab` |
+| **Fish** | `fzf` and `zoxide` integration, and `eza` aliases |
+| **Zsh** | antidote with `zsh-autosuggestions`, `fzf-tab`, and deferred `fast-syntax-highlighting`; `fzf` and `zoxide` integration, and `eza` aliases |
 | **Bash** | Vi-mode line editing, `fzf` integration, and shared aliases |
 | **bat** | Catppuccin Mocha syntax highlighting for file previews |
 | **Starship** | Single-line prompt displaying Git status metrics and runtime versions |
-| **Yazi** | Transparent background passthrough and inline image previews |
-| **btop** | Catppuccin Mocha theme with a transparent background and Vim-style navigation keys |
+| **Yazi** | Default theme and inline image previews |
+| **btop** | TTY theme with a transparent background and Vim-style navigation keys |
 
 ## Fonts
 

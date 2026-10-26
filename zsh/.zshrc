@@ -4,71 +4,55 @@
 
 # zmodload zsh/zprof
 
-case $- in *i*) ;; *) return;; esac
+# Emacs keymap. zsh selects vi mode when $EDITOR contains "vi", so set this
+# before plugins and fzf add their bindings.
+bindkey -e
 
-# Zinit
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-[ ! -d "$ZINIT_HOME" ] && mkdir -p "$(dirname "$ZINIT_HOME")"
-[ ! -d "$ZINIT_HOME/.git" ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-source "${ZINIT_HOME}/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+# Make Homebrew completions available in non-login shells too.
+typeset -U fpath
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 
-# Plugins
-zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions \
-    Aloxaf/fzf-tab
+# fzf: Ctrl-T files, Ctrl-R history, Alt-C directories, **<Tab> fuzzy completion.
+# Load before fzf-tab so fzf-tab owns Tab and calls fzf's widget underneath it.
+(( $+commands[fzf] )) && eval "$(fzf --zsh)"
 
-zinit ice as"command" from"gh-r" \
-         atclone="./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-         atpull="%atclone" src="init.zsh"
-zinit light starship/starship
-
-# Environment
-export EDITOR=nvim
-export PATH="/opt/homebrew/opt/openjdk@21/bin:/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+# Plugins (antidote). The bundle list is .zsh_plugins.txt; the generated
+# static file and the completion dump stay in ~/.cache/zsh.
+# Keep compinit's dump cache, permission checks, and completion file count check.
+zstyle ':plugin:ez-compinit' 'use-cache' no
+zstyle ':antidote:bundle' file "$HOME/.config/zsh/.zsh_plugins.txt"
+zstyle ':antidote:static' file "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zsh_plugins.zsh"
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+antidote load
 
 # History
-HISTSIZE=10000
-SAVEHIST=$HISTSIZE
+# HISTSIZE above SAVEHIST gives hist_expire_dups_first room to drop duplicates.
+HISTSIZE=60000
+SAVEHIST=50000
 HISTFILE=$HOME/.zsh_history
-setopt append_history share_history \
+setopt append_history share_history extended_history \
        hist_ignore_space hist_ignore_dups hist_find_no_dups \
        hist_save_no_dups hist_expire_dups_first
 
-# Keybindings
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey '^A' vi-beginning-of-line
-bindkey '^E' vi-end-of-line
-bindkey '^[w' kill-region
-
-# Completion
+# Completion. macOS sets no LS_COLORS, so generate it for list-colors.
+(( $+commands[gdircolors] )) && eval "$(gdircolors -b)"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 
 # Aliases
 [ -f "$HOME/.config/zsh/.zsh_aliases" ] && . "$HOME/.config/zsh/.zsh_aliases"
 
-# Shell integrations
-export FZF_DEFAULT_COMMAND="rg --files"
-export FZF_DEFAULT_OPTS='--height 40% --layout reverse'
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg:-1,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4,hl:#f38ba8,hl+:#f38ba8,info:#cba6f7,prompt:#cba6f7,pointer:#f5e0dc,marker:#b4befe,spinner:#f5e0dc,header:#f38ba8,border:#6c7086"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# Shell navigation shortcuts.
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
+bindkey '^[w' kill-region
 
-eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+# Smarter cd.
+(( $+commands[zoxide] )) && eval "$(zoxide init --cmd cd zsh)"
+
+# Prompt.
+(( $+commands[starship] )) && eval "$(starship init zsh)"
 
 # zprof
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/dsh/.lmstudio/bin"
-# End of LM Studio CLI section

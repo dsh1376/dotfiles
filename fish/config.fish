@@ -32,7 +32,6 @@ if command -q rg
     set -gx FZF_DEFAULT_COMMAND "rg --files --hidden --glob '!.git'"
 end
 set -gx FZF_DEFAULT_OPTS "--height=40% --layout=reverse --border --cycle --preview-window=wrap"
-set -ax FZF_DEFAULT_OPTS '--color=bg:-1,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4,hl:#f38ba8,hl+:#f38ba8,info:#cba6f7,prompt:#cba6f7,pointer:#f5e0dc,marker:#b4befe,spinner:#f5e0dc,header:#f38ba8,border:#6c7086'
 set -g fzf_fd_opts --hidden --exclude .git
 
 # Keep non-interactive shells lightweight.
@@ -69,6 +68,9 @@ alias vim="nvim"
 alias gst="git status"
 alias cfg="cd ~/.config"
 alias 哈吉米="cat"
+
+# Claude
+alias cc="claude"
 
 # Default Fish key bindings.
 fish_default_key_bindings
