@@ -170,14 +170,14 @@ highlighter_text_snapping = true
 enabled = true
 
 [shortcuts.global.fullscreen]
-enabled = true
+enabled = false
 key = "3"
 modifiers = ["command", "shift"]
 
 [shortcuts.global.area]
 enabled = true
-key = "X"
-modifiers = ["command", "shift"]
+key = "Z"
+modifiers = ["option"]
 
 [shortcuts.global.repeat_area]
 enabled = true

@@ -56,3 +56,5 @@ bindkey '^[w' kill-region
 (( $+commands[starship] )) && eval "$(starship init zsh)"
 
 # zprof
+
+export PATH="$HOME/.local/bin:$PATH"
